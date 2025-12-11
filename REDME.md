@@ -1,3 +1,5 @@
+tic-tac-toe project is a part of React learning course: https://react.dev/learn/tutorial-tic-tac-toe
+
 ### Development in Docker (React app)
 
 #### Prerequisites
