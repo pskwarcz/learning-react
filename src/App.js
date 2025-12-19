@@ -132,10 +132,10 @@ function calculateWinner(squares) {
     [0, 4, 8],
     [2, 4, 6],
   ];
-  for (let i = 0; i < lines.length; i++) {
-    const [a, b, c] = lines[i];
+  for (const element of lines) {
+    const [a, b, c] = element;
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return { player: squares[a], line: lines[i] };
+      return { player: squares[a], line: element };
     }
   }
   if (squares.every((square) => square)) {
