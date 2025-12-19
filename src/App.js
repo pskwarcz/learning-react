@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useImmer } from 'use-immer';
 
 function Square({ value, onSquareClick, highlight = false }) {
   return (
@@ -68,7 +69,7 @@ function Board({ xIsNext, squares, onPlay }) {
 }
 
 export default function Game() {
-  const [history, setHistory] = useState([{board: Array(9).fill(null), move: ""}]);
+  const [history, updateHistory] = useImmer([{board: Array(9).fill(null), move: ""}]);
   const [currentMove, setCurrentMove] = useState(0);
   const xIsNext = currentMove % 2 === 0;
   const currentSquares = history[currentMove].board;
@@ -76,9 +77,8 @@ export default function Game() {
   const [ascOrder, setAscOrder] = useState(true);
 
   function handlePlay(nextMove) {
-    const nextHistory = [...history.slice(0, currentMove + 1), nextMove];
-    setHistory(nextHistory);
-    setCurrentMove(nextHistory.length - 1);
+    updateHistory(h=> {history.push(nextMove)});
+    setCurrentMove(history.length);
   }
 
   function jumpTo(nextMove) {
