@@ -77,8 +77,11 @@ export default function Game() {
   const [ascOrder, setAscOrder] = useState(true);
 
   function handlePlay(nextMove) {
-    updateHistory(h=> {history.push(nextMove)});
-    setCurrentMove(history.length);
+    updateHistory(draft => {
+      draft.length = currentMove + 1;
+      draft.push(nextMove);
+    });
+    setCurrentMove(currentMove + 1);
   }
 
   function jumpTo(nextMove) {
